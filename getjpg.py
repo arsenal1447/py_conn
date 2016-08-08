@@ -11,8 +11,12 @@ def getImg(html):
     reg = r'src="(.+?\.jpg)" pic_ext'
     imgre = re.compile(reg)
     imglist = re.findall(imgre,html)
+    x = 0
+    for imgurl in imglist:
+        urllib.urlretrieve(imgurl,'img/%s.jpg' % x)
+        x+=1
     return imglist
 
-html = getHtml("http://tieba.baidu.com/p/4718705682")
+html = getHtml("http://tieba.baidu.com/p/2460150866")
 
 print getImg(html)
